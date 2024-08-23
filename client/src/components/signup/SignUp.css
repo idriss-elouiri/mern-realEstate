@@ -1,0 +1,76 @@
+.signUp-container {
+  display: flex;
+  height: 100vh;
+  flex-direction: row;
+}
+
+.image-section {
+  flex: 1;
+  background:  no-repeat center center;
+  background-size: cover;
+}
+
+.form-section {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-section form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-section label {
+  margin-bottom: 5px;
+}
+
+.form-section input {
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.form-section button {
+  padding: 10px;
+  font-size: 16px;
+  margin: 10px 0;
+  cursor: pointer;
+
+}
+.form-section button {
+  padding: 10px;
+  font-size: 16px;
+  margin: 10px 0;
+  cursor: pointer;
+
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .signUp-container {
+    flex-direction: column;
+  }
+
+  .image-section {
+    height: 200px; /* Adjust based on your design */
+    background-position: center top;
+  }
+
+  .form-section {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-section input,
+  button {
+    font-size: 14px;
+  }
+
+  .form-section button {
+    padding: 8px;
+  }
+}

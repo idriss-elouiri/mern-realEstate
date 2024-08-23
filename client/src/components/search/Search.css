@@ -1,0 +1,133 @@
+.search-page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .search-form {
+    border-bottom: 1px solid #ddd;
+    padding: 20px;
+  }
+  
+  .search-form h2 {
+    margin-bottom: 20px;
+  }
+  
+  .search-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .search-form label {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .search-form input, 
+  .search-form select {
+    margin-top: 5px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .search-form button {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #27ae60;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .property-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group .toggle-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .form-group .toggle-button {
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .form-group .toggle-button.active {
+    background-color: #27ae60;
+    color: #fff;
+    border: 1px solid #27ae60;
+  }
+  
+  .property-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 300px;
+    height: fit-content;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .property-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .property-card h3 {
+    margin: 15px;
+    font-size: 1.2em;
+  }
+  
+  .property-card p {
+    margin: 15px;
+    font-size: 0.9em;
+  }
+  
+  /* Responsive Styles */
+  @media (min-width: 768px) {
+    .search-page {
+      flex-direction: row;
+    }
+  
+    .search-form {
+      border-right: 1px solid #ddd;
+      border-bottom: none;
+      padding: 20px;
+    }
+  
+    .property-list {
+      flex-direction: row;
+      gap: 20px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .search-form input, 
+    .search-form select {
+      font-size: 0.9em;
+    }
+  
+    .property-card h3 {
+      font-size: 1.1em;
+    }
+  
+    .property-card p {
+      font-size: 0.8em;
+    }
+  }
+  
