@@ -3,20 +3,27 @@ import mongoose from "mongoose";
 import userRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
 import listingRouter from "./routes/listing.route.js";
+import cors from "cors"
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 dotenv.config();
 
+
+
+const mongoURI = process.env.MONGODB_URI || 'mongodb+srv://idriss1elouiri2:mern-realEstate@cluster0.z9q23.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0';
+
 mongoose
-  .connect('mongodb+srv://idriss1elouiri2:mern-realEstate@cluster0.z9q23.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0')
+  .connect(mongoURI , { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("Connected to MongoDB!");
   })
   .catch((err) => {
     console.log(err);
   });
-console.log(process.env.MONGO_URI)
+
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 
