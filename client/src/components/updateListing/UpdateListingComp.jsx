@@ -40,7 +40,7 @@ const UpdatedListingComp = ({ listingId }) => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     const fetchListing = async () => {
-      const res = await fetch(`/api/listing/get/${listingId}`);
+      const res = await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/listing/get/${listingId}`);
       const data = await res.json();
       if (data.success === false) {
         console.log(data.message);
@@ -157,7 +157,7 @@ const UpdatedListingComp = ({ listingId }) => {
         return setError("Discount price must be lower than regular price");
       setLoading(true);
       setError(false);
-      const res = await fetch(`/api/listing/update/${listingId}`, {
+      const res = await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/listing/update/${listingId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

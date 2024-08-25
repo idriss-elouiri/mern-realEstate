@@ -25,7 +25,7 @@ const SignInComp = () => {
     e.preventDefault();
     try {
       dispatch(signInStart());
-      const res = await fetch("/api/auth/signin", {
+      const res = await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/auth/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

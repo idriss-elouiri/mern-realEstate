@@ -35,7 +35,7 @@ const ListingDetailsComp = ({ listingId }) => {
     const fetchListing = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`/api/listing/get/${listingId}`);
+        const res = await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/listing/get/${listingId}`);
         const data = await res.json();
         if (data.success === false) {
           setError(true);
