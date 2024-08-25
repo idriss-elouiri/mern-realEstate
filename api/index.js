@@ -9,11 +9,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 
-
-const mongoURI = process.env.MONGODB_URI || 'mongodb+srv://idriss1elouiri2:mern-realEstate@cluster0.z9q23.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0';
-
 mongoose
-  .connect(mongoURI , { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect('mongodb+srv://idriss1elouiri2:mern-realEstate@cluster0.z9q23.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0' , { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("Connected to MongoDB!");
   })
