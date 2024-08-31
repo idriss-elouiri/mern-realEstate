@@ -6,7 +6,11 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
+<<<<<<< HEAD
         target: process.env.VITE_BACKEND_URL || 'http://localhost:3000',
+=======
+        target: 'https://mern-real-estate-tau.vercel.app',
+>>>>>>> e73c3b528de11e35bbcba6460172c30154177689
         secure: false,
       },
     },
