@@ -9,6 +9,7 @@ import {
   signInFailure,
 } from "../../redux/user/userSlice";
 import OAuth from "../../components/OAuth";
+import Notification from '../notification/Notification';
 
 const SignInComp = () => {
   const [formData, setFormData] = useState({});
@@ -25,7 +26,7 @@ const SignInComp = () => {
     e.preventDefault();
     try {
       dispatch(signInStart());
-      const res = await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/auth/signin`, {
+      const res = await fetch("/api/auth/signin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -58,10 +59,10 @@ const SignInComp = () => {
 
           <label htmlFor="password">Password:</label>
           <input type="password" id="password" onChange={handleChange} name="password" required />
-          <Link to="/sign-in">I dont have an account</Link>
+          <Link to="/sign-up">I dont have an account</Link>
           <button type="submit">SignIn</button>
           <OAuth/>
-
+          {error && <Notification type={"error"} message={error} />}
         </form>
       </div>
     </div>

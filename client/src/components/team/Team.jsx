@@ -3,6 +3,9 @@ import {FaFacebook, FaLinkedin, FaTwitter, FaInstagram, FaEnvelope, FaPhoneAlt} 
 import team1 from "../images/customer/team-1.jpg"
 import team3 from "../images/customer/team-3.jpg"
 import team5 from "../images/customer/team-5.jpg"
+import team4 from "../images/customer/team4.jpg"
+import team6 from "../images/customer/team6.jpg"
+import team2 from "../images/customer/team2.jpg"
 import "./Team.css"
 import Heading from "../common/Heading"
 
@@ -24,28 +27,28 @@ const Team = () => {
     },
     {
       list: "80",
-      cover: team5,
+      cover: team2,
       address: "Denever, USA",
       name: "Anna K. Young",
       icon: [<i class='fa-brands'><FaFacebook/></i>, <i class='fa-brands'><FaLinkedin/></i>, <i class='fa-brands'><FaTwitter/></i>, <i class='fa-brands'><FaInstagram/></i>],
     },
     {
       list: "51",
-      cover: team5,
+      cover: team6,
       address: "2272 Briarwood Drive",
       name: "Michael P. Grimaldo",
       icon: [<i class='fa-brands'><FaFacebook/></i>, <i class='fa-brands'><FaLinkedin/></i>, <i class='fa-brands'><FaTwitter/></i>, <i class='fa-brands'><FaInstagram/></i>],
     },
     {
       list: "42",
-      cover: team1,
+      cover: team4,
       address: "2272 Briarwood Drive",
       name: "Michael P. Grimaldo",
       icon: [<i class='fa-brands'><FaFacebook/></i>, <i class='fa-brands'><FaLinkedin/></i>, <i class='fa-brands'><FaTwitter/></i>, <i class='fa-brands'><FaInstagram/></i>],
     },
     {
       list: "38",
-      cover: team3,
+      cover: team5,
       address: "Montreal, USA",
       name: "Adam K. Jollio",
       icon: [<i class='fa-brands fa-facebook-f'></i>, <i class='fa-brands fa-linkedin'></i>, <i class='fa-brands fa-twitter'></i>, <i class='fa-brands fa-instagram'></i>],

@@ -12,43 +12,33 @@ const listingSchema = new mongoose.Schema(
     },
     address: {
       type: String,
-      required: true,
     },
     category: {
       type: String,
-      required: true,
     },
     regularPrice: {
       type: Number,
-      required: true,
     },
     discountPrice: {
       type: Number,
-      required: true,
     },
     bathrooms: {
       type: Number,
-      required: true,
     },
     bedrooms: {
       type: Number,
-      required: true,
     },
     furnished: {
       type: String,
-      required: true,
     },
     parking: {
       type: String,
-      required: true,
     },
     type: {
       type: String,
-      required: true,
     },
     offer: {
       type: String,
-      required: true,
     },
     imageUrls: {
       type: Array,

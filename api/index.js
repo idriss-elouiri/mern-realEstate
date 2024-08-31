@@ -10,7 +10,7 @@ dotenv.config();
 
 
 mongoose
-  .connect('mongodb+srv://idriss1elouiri2:mern-realEstate@cluster0.z9q23.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0' , { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("Connected to MongoDB!");
   })

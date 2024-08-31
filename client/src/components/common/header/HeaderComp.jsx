@@ -25,7 +25,6 @@ const HeaderComp = () => {
               ))}
             </ul>
           </div>
-          <div className="box">
             <Link to='/profile'>
             {currentUser ? (
               <img
@@ -34,12 +33,11 @@ const HeaderComp = () => {
                 className="profile"
               />
             ) : (
-              <button className="btn1">
-              <i><FaSignOutAlt/></i> Sign In
+              <button className="btn-hd">
+             Sign In
             </button>
             )}
           </Link>
-          </div>
 
           <div className="toggle">
             <button onClick={() => setNavList(!navList)}>

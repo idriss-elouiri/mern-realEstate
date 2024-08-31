@@ -9,7 +9,7 @@ const RecentCard = ({listings}) => {
           const {_id, imageUrls, category, address, name, regularPrice, type } = val
           return (
             <div className='box shadow' key={index}>
-              <div className='img'>
+              <div className='recent-img'>
                 <img src={imageUrls[0]} alt='' />
               </div>
               <div className='text'>

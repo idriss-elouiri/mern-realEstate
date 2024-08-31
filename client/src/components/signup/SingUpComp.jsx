@@ -4,6 +4,7 @@ import bannerImage from '../images/banner.png';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import OAuth from '../OAuth';
+import Notification from '../notification/Notification';
 
 const SignUpComp = () => {
   const [formData, setFormData] = useState({});
@@ -21,7 +22,7 @@ const SignUpComp = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/auth/signup`, {
+      const res = await fetch("/api/auth/signup", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -59,9 +60,12 @@ const SignUpComp = () => {
 
           <label htmlFor="password">Password:</label>
           <input type="password" id="password" name="password"  onChange={handleChange} required />
+          <Link to="/sign-in">I  have an account</Link>
 
           <button type="submit">Signup</button>
           <OAuth/>
+
+          <Notification type={"error"} message={error} />
         </form>
       </div>
     </div>

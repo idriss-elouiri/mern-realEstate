@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import Back from "../common/Back"
 import "../home/recent/Recent.css"
-import img from "../images/about.jpg"
+import img from "../images/blog.jpg"
 import RecentCard from "../recent/RecentCard"
 
 const BlogComp = () => {
@@ -10,7 +10,7 @@ const BlogComp = () => {
   useEffect(() => {
     const fetchListing = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/listing/get`);
+        const res = await fetch("/api/listing/get");
         const data = await res.json();
         if (data.success === false) {
           console.log(data.message);
