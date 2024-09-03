@@ -76,7 +76,7 @@ const ProfileComp = () => {
     try {
       dispatch(updateUserStart());
       const res = await fetch(
-        `http://localhost:3000/api/user/update/${currentUser._id}`,
+        `https://api-real-estate-nzol.vercel.app/api/user/update/${currentUser._id}`,
         {
           method: "POST",
           headers: {
@@ -102,7 +102,7 @@ const ProfileComp = () => {
     try {
       dispatch(deleteUserStart());
       const res = await fetch(
-        `http://localhost:3000/api/user/delete/${currentUser._id}`,
+        `https://api-real-estate-nzol.vercel.app/api/user/delete/${currentUser._id}`,
         {
           method: "DELETE",
         }
@@ -121,7 +121,7 @@ const ProfileComp = () => {
   const handleSignOut = async () => {
     try {
       dispatch(signOutUserStart());
-      const res = await fetch("http://localhost:3000/api/auth/signout");
+      const res = await fetch("https://api-real-estate-nzol.vercel.app/api/auth/signout");
       const data = await res.json();
       if (data.success === false) {
         dispatch(deleteUserFailure(data.message));
@@ -136,7 +136,7 @@ const ProfileComp = () => {
     try {
       setShowListingsError(false);
       const res = await fetch(
-        `http://localhost:3000/api/user/listings/${currentUser._id}`
+        `https://api-real-estate-nzol.vercel.app/api/user/listings/${currentUser._id}`
       );
       const data = await res.json();
       if (data.success === false) {
@@ -154,7 +154,7 @@ const ProfileComp = () => {
     try {
       const res = await fetch(
         `
-        http://localhost:3000/api/listing/delete/${listingId}`,
+        https://api-real-estate-nzol.vercel.app/api/listing/delete/${listingId}`,
         {
           method: "DELETE",
         }

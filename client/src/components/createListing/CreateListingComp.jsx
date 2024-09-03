@@ -144,7 +144,7 @@ const CreateListingComp = () => {
         return setError("Discount price must be lower than regular price");
       setLoading(true);
       setError(false);
-      const res = await fetch("http://localhost:3000/api/listing/create", {
+      const res = await fetch("https://api-real-estate-nzol.vercel.app/api/listing/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
