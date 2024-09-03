@@ -25,7 +25,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use(cors({
-  origin: ["https://real-estate-sveh.vercel.app"],
+  origin: ["https://real-estate-xi-ruddy.vercel.app/"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }))
