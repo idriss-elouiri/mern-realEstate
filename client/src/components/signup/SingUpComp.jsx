@@ -22,7 +22,7 @@ const SignUpComp = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch("https://api-real-estate-nzol.vercel.app/api/auth/signup", {
+      const res = await fetch("https://api-real-estate-ten.vercel.app/api/auth/signup", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

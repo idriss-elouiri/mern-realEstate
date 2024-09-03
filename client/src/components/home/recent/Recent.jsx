@@ -9,7 +9,7 @@ const Recent = () => {
   useEffect(() => {
     const fetchListing = async () => {
       try {
-        const res = await fetch("https://api-real-estate-nzol.vercel.app/api/listing/get?limit=8");
+        const res = await fetch("https://api-real-estate-ten.vercel.app/api/listing/get?limit=8");
         const data = await res.json();
         if (data.success === false) {
           console.log(data.message);

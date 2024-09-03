@@ -10,7 +10,7 @@ const BlogComp = () => {
   useEffect(() => {
     const fetchListing = async () => {
       try {
-        const res = await fetch("https://api-real-estate-nzol.vercel.app/api/listing/get");
+        const res = await fetch("https://api-real-estate-ten.vercel.app/api/listing/get");
         const data = await res.json();
         if (data.success === false) {
           console.log(data.message);
