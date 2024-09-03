@@ -10,7 +10,7 @@ const BlogComp = () => {
   useEffect(() => {
     const fetchListing = async () => {
       try {
-        const res = await fetch("/api/listing/get");
+        const res = await fetch("http://localhost:3000/api/listing/get");
         const data = await res.json();
         if (data.success === false) {
           console.log(data.message);
