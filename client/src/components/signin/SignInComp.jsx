@@ -10,6 +10,7 @@ import {
 } from "../../redux/user/userSlice";
 import OAuth from "../../components/OAuth";
 import Notification from '../notification/Notification';
+import { BASE_URL } from '../../BASE_URL';
 
 const SignInComp = () => {
   const [formData, setFormData] = useState({});
@@ -26,7 +27,7 @@ const SignInComp = () => {
     e.preventDefault();
     try {
       dispatch(signInStart());
-      const res = await fetch("/api/auth/signin", {
+      const res = await fetch(`/api/auth/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

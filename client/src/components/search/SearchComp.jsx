@@ -2,6 +2,7 @@ import React from "react";
 import "./Search.css";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../BASE_URL";
 
 const SearchComp = () => {
   const navigate = useNavigate();

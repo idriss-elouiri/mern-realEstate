@@ -9,7 +9,7 @@ const Recent = () => {
   useEffect(() => {
     const fetchListing = async () => {
       try {
-        const res = await fetch("/api/listing/get?limit=8");
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/listing/get?limit=8`);
         const data = await res.json();
         if (data.success === false) {
           console.log(data.message);

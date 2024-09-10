@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import OAuth from '../OAuth';
 import Notification from '../notification/Notification';
+import { BASE_URL } from '../../BASE_URL';
 
 const SignUpComp = () => {
   const [formData, setFormData] = useState({});
@@ -22,7 +23,7 @@ const SignUpComp = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch("/api/auth/signup", {
+      const res = await fetch(`/api/auth/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

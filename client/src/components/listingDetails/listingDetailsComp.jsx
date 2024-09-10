@@ -15,6 +15,7 @@ import { BiCategory } from "react-icons/bi";
 import { useSelector } from 'react-redux';
 import Slider from "react-slick";
 import Notification from "../notification/Notification";
+import { BASE_URL } from "../../BASE_URL";
 
 const ListingDetailsComp = ({ listingId }) => {
   const [listing, setListing] = useState(null);
