@@ -144,7 +144,7 @@ const CreateListingComp = () => {
         return setError("Discount price must be lower than regular price");
       setLoading(true);
       setError(false);
-      const res = await fetch(`/api/listing/create`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/listing/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

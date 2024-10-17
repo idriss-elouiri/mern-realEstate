@@ -40,7 +40,7 @@ const UpdatedListingComp = ({ listingId }) => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     const fetchListing = async () => {
-      const res = await fetch(`/api/listing/get/${listingId}`);
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/listing/get/${listingId}`);
       const data = await res.json();
       if (data.success === false) {
         console.log(data.message);

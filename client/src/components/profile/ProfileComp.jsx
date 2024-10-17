@@ -78,13 +78,18 @@ const ProfileComp = () => {
     e.preventDefault();
     try {
       dispatch(updateUserStart());
-      const res = await fetch(`/api/user/update/${currentUser._id}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/update/${
+          currentUser._id
+        }`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
       const data = await res.json();
       if (data.success === false) {
         dispatch(updateUserFailure(data.message));
@@ -101,9 +106,14 @@ const ProfileComp = () => {
   const handleDeleteUser = async () => {
     try {
       dispatch(deleteUserStart());
-      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/delete/${
+          currentUser._id
+        }`,
+        {
+          method: "DELETE",
+        }
+      );
       const data = await res.json();
       if (data.success === false) {
         dispatch(deleteUserFailure(data.message));
@@ -118,7 +128,9 @@ const ProfileComp = () => {
   const handleSignOut = async () => {
     try {
       dispatch(signOutUserStart());
-      const res = await fetch(`/api/user/signout`);
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/signout`
+      );
       const data = await res.json();
       if (data.success === false) {
         dispatch(deleteUserFailure(data.message));
@@ -132,7 +144,11 @@ const ProfileComp = () => {
   const handleShowListings = async () => {
     try {
       setShowListingsError(false);
-      const res = await fetch(`/api/user/listings/${currentUser._id}`);
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/listings/${
+          currentUser._id
+        }`
+      );
       const data = await res.json();
       if (data.success === false) {
         setShowListingsError(true);
@@ -149,7 +165,7 @@ const ProfileComp = () => {
     try {
       const res = await fetch(
         `
-        /api/listing/delete/${listingId}`,
+        ${import.meta.env.VITE_BACKEND_URL}/api/listing/delete/${listingId}`,
         {
           method: "DELETE",
         }
@@ -239,12 +255,12 @@ const ProfileComp = () => {
           </Link>
         </div>
         <div className="profile-actions">
-          <button className="delete-account" onClick={handleDeleteUser}>
+          <span className="delete-account" onClick={handleDeleteUser}>
             Delete Account
-          </button>
-          <button className="sign-in" onClick={handleSignOut}>
+          </span>
+          <span className="sign-in" onClick={handleSignOut}>
             Sign Out
-          </button>
+          </span>
         </div>
       </form>
       <Notification type={"error"} message={error} />

@@ -3,11 +3,10 @@ import mongoose from "mongoose";
 import userRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
 import listingRouter from "./routes/listing.route.js";
-import cors from "cors"
+import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 dotenv.config();
-
 
 mongoose
   .connect(process.env.MONGO_URI)
@@ -18,24 +17,24 @@ mongoose
     console.log(err);
   });
 
-const app = express();  
+const app = express();
 
-app.use(cors());
-
+// Middleware
 app.use(express.json());
-
 app.use(cookieParser());
 
-app.use(cors({
-  origin: [process.env.FRONTEND_URL],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}))
-
+// Enable CORS with credentials
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Your frontend domain
+    credentials: true, // Allow credentials (cookies)
+  })
+);
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000!");
 });
+
 
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
@@ -50,4 +49,3 @@ app.use((err, req, res, next) => {
     message,
   });
 });
-
