@@ -12,7 +12,7 @@ import {
   FaTimesCircle,
 } from "react-icons/fa";
 import { BiCategory } from "react-icons/bi";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 import Slider from "react-slick";
 import Notification from "../notification/Notification";
 import { BASE_URL } from "../../BASE_URL";
@@ -36,7 +36,13 @@ const ListingDetailsComp = ({ listingId }) => {
     const fetchListing = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/listing/get/${listingId}`);
+        const res = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/listing/get/${listingId}`,
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
         const data = await res.json();
         if (data.success === false) {
           setError(true);

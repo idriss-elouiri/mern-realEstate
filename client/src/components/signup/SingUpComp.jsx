@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import OAuth from '../OAuth';
 import Notification from '../notification/Notification';
-import { BASE_URL } from '../../BASE_URL';
 
 const SignUpComp = () => {
   const [formData, setFormData] = useState({});
@@ -25,10 +24,10 @@ const SignUpComp = () => {
       setLoading(true);
       const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/auth/signup`, {
         method: 'POST',
+        credentials: "include",
         headers: {
           'Content-Type': 'application/json',
         },
-        credentials: 'include', // Ensure cookies are included
         body: JSON.stringify(formData),
       });
       const data = await res.json();

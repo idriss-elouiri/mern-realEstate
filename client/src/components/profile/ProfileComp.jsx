@@ -84,6 +84,7 @@ const ProfileComp = () => {
         }`,
         {
           method: "POST",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
@@ -112,6 +113,7 @@ const ProfileComp = () => {
         }`,
         {
           method: "DELETE",
+          credentials: "include",
         }
       );
       const data = await res.json();
@@ -129,7 +131,11 @@ const ProfileComp = () => {
     try {
       dispatch(signOutUserStart());
       const res = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/api/user/signout`
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/signout`,
+        {
+          method: "GET",
+          credentials: "include",
+        }
       );
       const data = await res.json();
       if (data.success === false) {
@@ -147,7 +153,11 @@ const ProfileComp = () => {
       const res = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/api/user/listings/${
           currentUser._id
-        }`
+        }`,
+        {
+          method: "GET",
+          credentials: "include",
+        }
       );
       const data = await res.json();
       if (data.success === false) {
@@ -168,6 +178,7 @@ const ProfileComp = () => {
         ${import.meta.env.VITE_BACKEND_URL}/api/listing/delete/${listingId}`,
         {
           method: "DELETE",
+          credentials: "include",
         }
       );
       const data = await res.json();
@@ -273,7 +284,7 @@ const ProfileComp = () => {
         <>
           {userListings.map((listing) => (
             <div className="show-listing">
-              <div className="listing-image-container">
+              <div className="listing-image-container" key={listing._id}>
                 <Link to={`/listing/${listing._id}`}>
                   <img
                     src={listing.imageUrls[0]}

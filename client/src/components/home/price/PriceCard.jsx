@@ -98,10 +98,10 @@ const PriceCard = () => {
             <p>{item.ptext}</p>
 
             <ul>
-              {item.list.map((val) => {
+              {item.list.map((val, index) => {
                 const { icon, text, change } = val
                 return (
-                  <li>
+                  <li key={index}>
                     <label
                       style={{
                         background: change === "color" ? "#dc35451f" : "#27ae601f",

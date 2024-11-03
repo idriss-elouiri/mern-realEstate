@@ -30,7 +30,7 @@ const HeaderComp = () => {
               <img
                 src={currentUser.avatar}
                 alt='profile'
-                className="profile"
+                className="profile-img"
               />
             ) : (
               <button className="btn-hd">

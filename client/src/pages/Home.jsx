@@ -5,7 +5,6 @@ import Recent from "../components/home/recent/Recent";
 import Awards from "../components/home/awards/Awards";
 import Price from "../components/home/price/Price";
 import Team from "../components/team/Team";
-import { BASE_URL } from "../BASE_URL";
 
 export default function Home() {
   const [offerListings, setOfferListings] = useState([]);
@@ -15,7 +14,15 @@ export default function Home() {
   useEffect(() => {
     const fetchOfferListings = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/listing/get?offer=true&limit=4`);
+        const res = await fetch(
+          `${
+            import.meta.env.VITE_BACKEND_URL
+          }/api/listing/get?offer=true&limit=4`,
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
         const data = await res.json();
         setOfferListings(data);
         fetchRentListings();
@@ -25,7 +32,15 @@ export default function Home() {
     };
     const fetchRentListings = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/listing/get?type=rent&limit=4`);
+        const res = await fetch(
+          `${
+            import.meta.env.VITE_BACKEND_URL
+          }/api/listing/get?type=rent&limit=4`,
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
         const data = await res.json();
         setRentListings(data);
         fetchSaleListings();
@@ -36,7 +51,15 @@ export default function Home() {
 
     const fetchSaleListings = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/listing/get?type=sale&limit=4`);
+        const res = await fetch(
+          `${
+            import.meta.env.VITE_BACKEND_URL
+          }/api/listing/get?type=sale&limit=4`,
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
         const data = await res.json();
         setSaleListings(data);
       } catch (error) {
@@ -45,7 +68,7 @@ export default function Home() {
     };
     fetchOfferListings();
   }, []);
-  
+
   return (
     <>
       <Hero />

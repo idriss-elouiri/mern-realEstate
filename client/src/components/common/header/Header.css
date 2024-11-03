@@ -10,6 +10,9 @@ header {
 header .logo img {
   width: 170px;
 }
+header .profile-img {
+  width: 50px;
+}
 header a {
   margin-left: 30px;
   transition: 0.5s;
@@ -38,12 +41,23 @@ header h4 {
 header .toggle {
   display: none;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 850px) {
   header {
     padding: 0;
+    width: 100%;
+    height: 8vh;
+    position: relative;
   }
   header .logo img {
-    margin-top: 30px;
+    margin-top: 10px;
+    width: 150px;
+  }
+  header  .profile-img {
+    position: absolute;
+    top: 20px;
+    right: 130px;
+    width: 50px;
+    height: 50px;
   }
   header .button {
     display: none;
@@ -51,9 +65,11 @@ header .toggle {
   header .nav .flex {
     display: none;
   }
+
   header .toggle {
     display: block;
     margin-top: 20px;
+    margin-left: 10px;
   }
   header .btn-hd{
     margin-top: 20px;
@@ -72,3 +88,23 @@ header .toggle {
     color: #fff;
   }
 }
+@media screen and (max-width: 600px) {
+  header {
+    padding: 0;
+    width: 100%;
+    height: 8vh;
+    position: relative;
+  }
+  header .logo img {
+    margin-top: 10px;
+    width: 120px;
+  }
+  header  .profile-img {
+    position: absolute;
+    top: 20px;
+    right: 120px;
+    width: 50px;
+    height: 50px;
+  }
+ 
+  }

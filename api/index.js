@@ -26,15 +26,17 @@ app.use(cookieParser());
 // Enable CORS with credentials
 app.use(
   cors({
-    origin: "http://localhost:5173", // Your frontend domain
-    credentials: true, // Allow credentials (cookies)
+    origin: process.env.FRONTEND_URL, // Your frontend origin
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
-app.listen(3000, () => {
-  console.log("Server is running on port 3000!");
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
-
 
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
