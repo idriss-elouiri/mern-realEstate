@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import './SignIn.css'; // Make sure to create and include your CSS file
-import bannerImage from '../images/banner.png';
+import React, { useState } from "react";
+import "./SignIn.css"; // Ensure your CSS file is properly linked
+import bannerImage from "../images/banner.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -9,66 +9,100 @@ import {
   signInFailure,
 } from "../../redux/user/userSlice";
 import OAuth from "../../components/OAuth";
-import Notification from '../notification/Notification';
-import { BASE_URL } from '../../BASE_URL';
+import Notification from "../notification/Notification";
+import { BASE_URL } from "../../BASE_URL";
 
 const SignInComp = () => {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
   const { loading, error } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.id]: e.target.value,
-    });
+    const { id, value } = e.target;
+    setFormData((prevState) => ({ ...prevState, [id]: value }));
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    dispatch(signInStart());
+
     try {
-      dispatch(signInStart());
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/auth/signin`, {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/auth/login`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
       const data = await res.json();
-      console.log(data);
-      if (data.success === false) {
-        dispatch(signInFailure(data.message));
-        return;
+
+      if (!res.ok) {
+        throw new Error(data.message || "Sign-in failed");
       }
+
       dispatch(signInSuccess(data));
       navigate("/");
     } catch (error) {
       dispatch(signInFailure(error.message));
     }
   };
+
   return (
     <div className="signin-container">
       <div className="image-section">
         <img src={bannerImage} alt="Real Estate" />
       </div>
       <div className="form-section">
-        <h2>SignIn</h2>
+        <h2>Sign In</h2>
         <form onSubmit={handleSubmit}>
-     
-          <label htmlFor="email">Email:</label>
-          <input type="email" id="email" onChange={handleChange} name="email" required />
+          <InputField
+            id="email"
+            label="Email:"
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+          <InputField
+            id="password"
+            label="Password:"
+            type="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
 
-          <label htmlFor="password">Password:</label>
-          <input type="password" id="password" onChange={handleChange} name="password" required />
-          <Link to="/sign-up">I dont have an account</Link>
-          <button type="submit">SignIn</button>
-          <OAuth/>
-          {error && <Notification type={"error"} message={error} />}
+          <Link to="/sign-up">I don't have an account</Link>
+          <button type="submit" disabled={loading}>
+            {loading ? "Signing In..." : "Sign In"}
+          </button>
+          <OAuth />
+          {error && <Notification type="error" message={error} />}
         </form>
       </div>
     </div>
   );
 };
+
+const InputField = ({ id, label, type, value, onChange, required }) => (
+  <div className="input-group">
+    <label htmlFor={id}>{label}</label>
+    <input
+      type={type}
+      id={id}
+      value={value}
+      onChange={onChange}
+      required={required}
+    />
+  </div>
+);
 
 export default SignInComp;

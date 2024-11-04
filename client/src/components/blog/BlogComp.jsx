@@ -6,35 +6,51 @@ import RecentCard from "../recent/RecentCard";
 
 const BlogComp = () => {
   const [listings, setListings] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchListing = async () => {
+    const fetchListings = async () => {
       try {
-        const res = await fetch(`/api/listing/get`, {
+        const response = await fetch(`/api/listing/get`, {
           method: "GET",
           credentials: "include",
         });
-        const data = await res.json();
-        if (data.success === false) {
-          console.log(data.message);
-          return;
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch listings");
         }
+
+        const data = await response.json();
+        if (data.success === false) {
+          throw new Error(data.message);
+        }
+
         setListings(data);
-      } catch (error) {
-        console.log(error.message);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
       }
     };
-    fetchListing();
+
+    fetchListings();
   }, []);
+
   return (
-    <>
-      <section className="blog-out mb">
-        <Back name="Blog" title="Blog Grid - Our Blogs" cover={img} />
-        <div className="container recent">
+    <section className="blog-out mb">
+      <Back name="Blog" title="Blog Grid - Our Blogs" cover={img} />
+      <div className="container recent">
+        {loading && <p>Loading...</p>}
+        {error && <p className="error-message">{error}</p>}
+        {!loading && !error && listings.length === 0 && (
+          <p>No listings available.</p>
+        )}
+        {!loading && !error && listings.length > 0 && (
           <RecentCard listings={listings} />
-        </div>
-      </section>
-    </>
+        )}
+      </div>
+    </section>
   );
 };
 
