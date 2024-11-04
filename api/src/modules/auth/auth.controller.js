@@ -1,21 +1,27 @@
-import User from "../models/user.model.js";
+import User from "./model.auth.js";
 import bcryptjs from "bcryptjs";
-import { errorHandler } from "../utils/error.js";
+import { errorHandler } from "../../utils/error.js";
 import jwt from "jsonwebtoken";
 
-export const signup = async (req, res, next) => {
-  const { username, email, password } = req.body;
+export const registerHandler = async (req, res, next) => {
+  const { name, email, password } = req.body;
   const hashedPassword = bcryptjs.hashSync(password, 10);
-  const newUser = new User({ username, email, password: hashedPassword });
+
+  const newUser = new User({
+    name,
+    email,
+    password: hashedPassword,
+  });
+
   try {
     await newUser.save();
-    res.status(201).json("User created successfully!");
+    res.json("Signup successful");
   } catch (error) {
     next(error);
   }
 };
 
-export const signin = async (req, res, next) => {
+export const loginHandler = async (req, res, next) => {
   const { email, password } = req.body;
 
   try {
@@ -36,10 +42,11 @@ export const signin = async (req, res, next) => {
 
     const { password: pass, ...rest } = validUser._doc;
 
-    return res.status(200)
+    return res
+      .status(200)
       .cookie("access_token", token, {
         httpOnly: true,
-        secure: false, // تأكد من تعيين secure بناءً على البيئة (false في بيئة التطوير)
+        secure: false,
       })
       .json(rest);
   } catch (error) {
@@ -47,10 +54,9 @@ export const signin = async (req, res, next) => {
   }
 };
 
-
-export const google = async (req, res, next) => {
+export const googleHandler = async (req, res, next) => {
   const { email, name, avatar } = req.body;
-  
+
   try {
     const user = await User.findOne({ email });
     let token, newUser;
@@ -61,11 +67,12 @@ export const google = async (req, res, next) => {
         process.env.JWT_SECRET
       );
       const { password, ...rest } = user._doc;
-      return res.status(200)
+      return res
+        .status(200)
         .cookie("access_token", token, {
           httpOnly: true,
         })
-        .json(rest); // Return here to prevent further execution
+        .json(rest);
     } else {
       const generatedPassword =
         Math.random().toString(36).slice(-8) +
@@ -85,13 +92,14 @@ export const google = async (req, res, next) => {
         process.env.JWT_SECRET
       );
       const { password, ...rest } = newUser._doc;
-      return res.status(200)
+      return res
+        .status(200)
         .cookie("access_token", token, {
           httpOnly: true,
         })
-        .json(rest); // Return here to prevent further execution
+        .json(rest);
     }
   } catch (error) {
-    next(error); // Pass the error to the next middleware (error handler)
+    next(error);
   }
 };
