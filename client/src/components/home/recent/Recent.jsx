@@ -10,25 +10,34 @@ const Recent = () => {
 
   useEffect(() => {
     const fetchListings = async () => {
+      setLoading(true); // Start loading
       try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/listing/get?limit=8`);
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/listing/get?limit=8`
+        );
         const data = await response.json();
+        console.log("API Response:", data); // Check the entire response structure
 
-        if (!data.success) {
+        // If the response is an array, set listings directly
+        if (Array.isArray(data)) {
+          setListings(data); // Set the listings directly from the array
+        } else if (data.success) {
+          setListings(data.listings); // Adjust based on the actual structure if necessary
+        } else {
           setError(data.message || "Failed to fetch listings.");
-          return;
         }
-
-        setListings(data.listings || []);
       } catch (error) {
+        console.error("Fetch error:", error); // Log full error for debugging
         setError(error.message || "An error occurred while fetching listings.");
       } finally {
-        setLoading(false);
+        setLoading(false); // End loading
       }
     };
 
     fetchListings();
   }, []);
+
+  console.log("Current Listings State:", listings); // Log the state of listings
 
   if (loading) {
     return <div className="loading">Loading...</div>;
@@ -36,6 +45,10 @@ const Recent = () => {
 
   if (error) {
     return <div className="error-message">{error}</div>;
+  }
+
+  if (listings.length === 0) {
+    return <div className="no-listings">No recent listings available.</div>;
   }
 
   return (

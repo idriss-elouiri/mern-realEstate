@@ -41,10 +41,9 @@ const ListingDetailsComp = ({ listingId }) => {
         );
         const data = await res.json();
 
-        if (!data.success) {
-          throw new Error(data.message || "Failed to fetch listing.");
-        }
+        console.log("Fetched data:", data); // Check the data structure
 
+        // Assuming the response is directly the listing object
         setListing(data);
       } catch (error) {
         setError(error.message || "An error occurred while fetching listing.");
@@ -56,50 +55,15 @@ const ListingDetailsComp = ({ listingId }) => {
     fetchListing();
   }, [listingId]);
 
+  useEffect(() => {
+    console.log("Updated listing state:", listing);
+  }, [listing]);
+
   const renderListingDetails = () => (
     <>
       <h1 className="listing-title">{listing?.name}</h1>
       <p className="listing-description">{listing?.description}</p>
-      <div className="listing-detail">
-        <FaMapMarkerAlt className="icon" /> Address: {listing?.address}
-      </div>
-      <div className="listing-detail">
-        <FaHome className="icon" /> Type: {listing?.type}
-      </div>
-      <div className="listing-detail">
-        <FaBed className="icon" /> Bedrooms: {listing?.bedrooms}
-      </div>
-      <div className="listing-detail">
-        <BiCategory className="icon" /> Category: {listing?.category}
-      </div>
-      <div className="listing-detail">
-        <FaBath className="icon" /> Bathrooms: {listing?.bathrooms}
-      </div>
-      <div className="listing-detail">
-        <span className="icon">
-          {listing?.offer ? <FaCheckCircle /> : <FaTimesCircle />}
-        </span>{" "}
-        Offer: {listing?.offer ? "Yes" : "No"}
-      </div>
-      <div className="listing-detail">
-        <span className="icon">
-          {listing?.furnished ? <FaCheckCircle /> : <FaTimesCircle />}
-        </span>{" "}
-        Furnished: {listing?.furnished ? "Yes" : "No"}
-      </div>
-      <div className="listing-detail">
-        {listing?.parking && <FaParking className="icon" />}
-        Parking: {listing?.parking === "garage" ? "Garage" : listing?.parking || "None"}
-      </div>
-      <p className="listing-regular-price">
-        Regular Price: ${listing?.regularPrice}
-      </p>
-      <p className="listing-discount-price">
-        Discount Price: ${listing?.discountPrice}
-      </p>
-      <button className="contact-button" onClick={() => alert(`Contact: ${currentUser?.email}`)}>
-        Contact
-      </button>
+      {/* Other details rendering */}
     </>
   );
 
