@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.put("/update/:userId", verifyToken, userController.updateUser);
 router.delete("/delete/:userId", verifyToken, userController.deleteUser);
-router.post("/signout", userController.signout);
+router.get("/signout", userController.signout);
 router.get("/getusers", verifyToken, userController.getUsers);
 router.get("/:userId", userController.getUser);
 
