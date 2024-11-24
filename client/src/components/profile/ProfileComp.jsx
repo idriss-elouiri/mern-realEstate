@@ -135,9 +135,11 @@ const ProfileComp = () => {
         }
       );
 
-      const data = await res.json();
-      if (!data.success) throw new Error(data.message);
-
+     const data = await res.json();
+      if (data.success === false) {
+        dispatch(signOutUserFailure(data.message));
+        console.log(data.message)
+      }
       dispatch(signOutUserSuccess(data));
     } catch (error) {
       dispatch(signOutUserFailure(error.message));
