@@ -12,7 +12,7 @@ const BlogComp = () => {
   useEffect(() => {
     const fetchListings = async () => {
       try {
-        const response = await fetch(`/api/listing/get`, {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/listing/get`, {
           method: "GET",
           credentials: "include",
         });
